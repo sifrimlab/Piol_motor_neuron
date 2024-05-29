@@ -640,33 +640,33 @@ writexl::write_xlsx(x = control_count_mat,
 ```
 
 
-<!-- Alejandro's suggestion for a "reliably detected" gene list consists of all genes -->
-<!-- were there is a non-zero gene count measurement: -->
+Alejandro's suggestion for a "reliably detected" gene list consists of all genes
+were there is a non-zero gene count measurement:
 
-<!-- * across all samples (more conservative) -->
-<!-- * across all control samples (less conservative) -->
+* across all samples (more conservative)
+* across all control samples (less conservative)
 
-<!-- The number of samples with non-zero values across all samples -->
+The number of samples with non-zero values across all samples
 
-<!-- ```{r} -->
-<!-- norm_cts %>% -->
-<!--   dplyr::filter(non_zero_vals == 16) -> norm_cts_non_0 -->
-<!-- nrow(norm_cts_non_0) -->
-<!-- ``` -->
+```{r}
+norm_cts %>%
+  dplyr::filter(non_zero_vals == 16) -> norm_cts_non_0
+nrow(norm_cts_non_0)
+```
 
-<!-- The number of samples with non-zero values across `control` all samples -->
+The number of samples with non-zero values across `control` all samples
 
-<!-- ```{r} -->
-<!-- norm_cts %>% -->
-<!--   dplyr::select(meta %>% -->
-<!--                   dplyr::filter(class == "CTRL") %>% -->
-<!--                   dplyr::select(sample) %>% -->
-<!--                   dplyr::pull()) -> norm_cts_control -->
-<!-- norm_cts_control$non_zero_vals <- apply(norm_cts_control == 0, 1, function(x) sum(x == 0)) -->
-<!-- norm_cts_control %>% -->
-<!--   dplyr::filter(non_zero_vals == 8) -> norm_cts_control_non_0 -->
-<!-- nrow(norm_cts_control_non_0) -->
-<!-- ``` -->
+```{r}
+norm_cts %>%
+  dplyr::select(meta %>%
+                  dplyr::filter(class == "CTRL") %>%
+                  dplyr::select(sample) %>%
+                  dplyr::pull()) -> norm_cts_control
+norm_cts_control$non_zero_vals <- apply(norm_cts_control == 0, 1, function(x) sum(x == 0))
+norm_cts_control %>%
+  dplyr::filter(non_zero_vals == 8) -> norm_cts_control_non_0
+nrow(norm_cts_control_non_0)
+```
 
 ## Save Results
 
@@ -680,13 +680,13 @@ sheets:
 * Sheet 5 = Only significant DEGs for `CTRL_ChATpos` vs `FUS_ChATpos`
 
 ```{r save_data, warning=FALSE, message=FALSE}
-# l0 <- list(norm_gene_stats, rd1, sig1, rd2, sig2)
-# names(l0) <- c("Normalized genes and stats",
-#                "DEG CTRL_ChATpos v CTRL_ChATneg",
-#                "Sig CTRL_ChATpos v CTRL_ChATneg",
-#                "DEG CTRL_ChATpos v FUS_ChATpos",
-#                "Sig CTRL_ChATpos v FUS_ChATpos")
-# writexl::write_xlsx(x = l0, path = paste0("./data/NS_DEG_lists_final.xlsx"))
+l0 <- list(norm_gene_stats, rd1, sig1, rd2, sig2)
+names(l0) <- c("Normalized genes and stats",
+               "DEG CTRL_ChATpos v CTRL_ChATneg",
+               "Sig CTRL_ChATpos v CTRL_ChATneg",
+               "DEG CTRL_ChATpos v FUS_ChATpos",
+               "Sig CTRL_ChATpos v FUS_ChATpos")
+writexl::write_xlsx(x = l0, path = paste0("./data/NS_DEG_lists_final.xlsx"))
 ```
 
 ### Session Info
