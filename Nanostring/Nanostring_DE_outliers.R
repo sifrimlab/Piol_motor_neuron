@@ -213,26 +213,3 @@ res_data %>%
 res_data %>%
   dplyr::arrange(desc(log2FoldChange)) %>%
   dplyr::slice(1:20) -> top_20
-
-# ################################# obsolete ###################################
-## calculate Cook's Cutoff
-# N = nrow(count_mat)
-# K = 1
-# cutoff = 4/ (N-K-1)
-
-# readxl::read_excel(path = paste0(
-#   fp, "Maria_Count_Matrices/Raw/SN/Count_Matrix_Raw_Long_SN.xlsx"),
-#   ) %>% 
-#   tibble::column_to_rownames(var = "Genes") -> count_mat
-# # names(count_mat) <- gsub(".dcc", "", names(count_mat))
-# # count_mat[is.na(count_mat)] <- 0
-# View(count_mat)
-
-## make metadata
-# data.frame(samples = names(count_mat),
-#            condition = c(rep("chat_pos", 4), rep("chat_neg", 4)),
-#            replicate = c(rep(c(1, 2, 3, 4), 2))) %>% 
-#   dplyr::mutate_all(as.factor) %>% 
-#   as.data.frame() -> meta_data
-# rownames(meta_data) <- meta_data$samples
-# # View(meta_data)

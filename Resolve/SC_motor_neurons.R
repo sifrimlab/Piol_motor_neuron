@@ -302,19 +302,3 @@ names(seu_markers) <- c("ctrlFUS vs FUS",
                         "ctrlSOD vs SOD", "all vs all")
 writexl::write_xlsx(path = paste0(fp0, "seurat_DE_res.xlsx"),
                     x = seu_markers)
-
-#### obsolete ??
-
-## read saved prepared Seurat object
-# seu <- readRDS(file = paste0(fp2, "seurat_", pn, ".rds"))
-
-## DE on clusters
-# seu <- SetIdent(object = seu, value = "RNA_snn_res.0.1")
-# levels(seu)
-# seu %>%
-#   FindAllMarkers(test.use = "wilcox") %>%
-#   as.data.frame() %>% 
-#   dplyr::arrange(p_val_adj) %>%
-#   dplyr::select(gene, cluster, everything()) %>%
-#   as.data.frame() -> seu_mark_c
-# saveRDS(object = seu_mark_c, file = paste0(fp2, pn, "_res_0.1_de.rds"))

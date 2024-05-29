@@ -1,6 +1,5 @@
 ## this script compares the SN and SC regions and finds DE genes
 
-
 ## load libraries
 library("dplyr")
 library("tidyr")
@@ -58,5 +57,7 @@ res %>%
   as.data.frame() %>%
   tibble::rownames_to_column(var = "genes") %>%
   dplyr::arrange(padj) -> de_res
+
+## save DE results
 writexl::write_xlsx(x = de_res, path = paste0(fp, "SN_SC_chatpos_DE_res.xlsx"))
 saveRDS(object = de_res, file = paste0(fp, "SN_SC_chatpos_DE_res.rds"))
