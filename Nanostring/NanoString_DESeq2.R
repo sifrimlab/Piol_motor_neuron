@@ -70,7 +70,7 @@ df$Genes <- row.names(df)
 
 
 
-setwd("C:/Users/u0140675/OneDrive - KU Leuven/DESeq2_Analysis_Nanostring/No_Shrunken/SN/Excel_Files/With_Interaction_Terms/ChATpos")
+setwd("")
 write_xlsx(df, "Results_SN_ChATpos_FUS_Vs_CTRL_2.xlsx")
 
 
@@ -127,7 +127,7 @@ df$Genes <- row.names(df)
 df <- as.data.frame(Results_SN_Vs_SC_LFC_Ordered)
 df$Genes <- row.names(df)
 
-setwd("C:/Users/u0140675/OneDrive - KU Leuven/DESeq2_Analysis_Nanostring/No_Shrunken/Whole_Dataset/Excel_Files")
+setwd("")
 write_xlsx(df, "Results_SN_Vs_SC_ChATpos_CTRL.xlsx")
 
 #................................................................................................
@@ -139,7 +139,7 @@ sum(Results_ChATpos_Vs_ChATneg_Ordered$pvalue < 0.05, na.rm=TRUE)
 df <- as.data.frame(Results_ChATpos_Vs_ChATneg_Ordered)
 df$Genes <- row.names(df)
 
-setwd("C:/Users/u0140675/Desktop/Μαρία/PhD/Projects/NanoString_DaCruz_Alejandro/Maria/Analysis/Results/DESeq2_Analysis/SC/Excel_Files")
+setwd("")
 write_xlsx(df, "Results_ChATpos_Vs_ChATneg_Ordered.xlsx")
 
 
