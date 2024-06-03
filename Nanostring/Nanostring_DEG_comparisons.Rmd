@@ -76,9 +76,8 @@ raw_df %>%
   dplyr::select(-c(Genes, cts, expected_neg, scan_name)) %>%
   dplyr::mutate(group = paste0(region, "_", segment),
                 condition = paste0(class, "_", segment)) %>%
-  # dplyr::filter(region == "SN",   ## only sciatic nerve samples are selected
-  #               class != "TDP_43" ## no TDP-43 samples are selected!
-  #               ) %>%
+  dplyr::filter(region == "SN",   ## only sciatic nerve samples are selected
+                class != "TDP_43") %>%
   dplyr::arrange(segment) %>%
   dplyr::mutate_all(as.factor) %>%
   as.data.frame() -> meta
@@ -103,6 +102,7 @@ dds <- DESeqDataSetFromMatrix(countData = count_mat %>%
                                 as.matrix(),
                               colData = meta,
                               design = ~ condition)
+
 keep <- rowSums(counts(dds)) > 0
 dds <- DESeq(dds[keep, ])
 res1 <- results(object = dds,
