@@ -1,5 +1,5 @@
 ---
-title: "Nanostring Differential Expression Comparisons"
+title: "Nanostring Sciatic Nerve Differential Expression Comparisons"
 author: "Theo Killian"
 date: "`r Sys.Date()`"
 output:
