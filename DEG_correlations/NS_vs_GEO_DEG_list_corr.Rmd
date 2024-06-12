@@ -70,7 +70,7 @@ getBM(attributes = c("external_synonym", "ensembl_gene_id", "external_gene_name"
       mart = useDataset("mmusculus_gene_ensembl",
                         useMart("ensembl", host = "https://www.ensembl.org"))) %>%
   dplyr::rename(genes = external_gene_name) %>%
-  dplyr::filter(stringr::str_length(genes) > 1) %>% ## no blank gene entries
+  dplyr::filter(stringr::str_length(genes) > 1) %>% ## remove blank gene symbols
   as.data.frame() -> mouse_gene_ids
 
 ## get Marts and convert human gene list to mouse marker genes
@@ -138,7 +138,7 @@ DE_Nanostring_sig_genes %>%
   as.data.frame() -> DE_Nanostring_sig_genes_NA
 
 ## read Gitler_GSE161621 results
-readRDS("../GEO_DEG_lists/GSE161621_Blum_et_al_motorneuron_DEGs.rds") %>% ## new DE
+readRDS("../GEO_DEG_lists/GSE161621_Blum_et_al_motorneuron_DEGs.rds") %>%
   dplyr::rename(genes = names(.)[1]) %>%
   dplyr::mutate(Gitler_GSE161621_gene_rank = row_number()) %>%
   dplyr::left_join(mouse_gene_ids, by = "genes") %>%
@@ -154,7 +154,7 @@ Gitler_GSE161621_DE_RES %>%
   as.data.frame() -> Gitler_GSE161621_DE_RES_NA
 
 ## read Le_Pichon_GSE167597 results
-readRDS("../GEO_DEG_lists/GSE167597_Alkaslasi_et_al_motorneuron_DEGs.rds") %>% ## new CORRECT DE
+readRDS("../GEO_DEG_lists/GSE167597_Alkaslasi_et_al_motorneuron_DEGs.rds") %>%
   dplyr::rename(genes = names(.)[1]) %>%
   dplyr::mutate(Le_Pichon_GSE167597_gene_rank = row_number()) %>%
   dplyr::left_join(mouse_gene_ids, by = "genes") %>%
@@ -227,7 +227,9 @@ dplyr::bind_rows(Levine_GSE103892_DE_RES, Levine_GSE103892_DE_RES_NA) %>%
 #                 !genes %in% Levine_GSE103892_ensembl$external_synonym,
 #                 !genes %in% Gitler_GSE161621_ensembl$external_synonym,
 #                 !genes %in% Levine_GSE190442_DE_RES2$ensembl_gene_id) -> a4
+```
 
+```{r fig.width=9.5, fig.height=9.5}
 ## Venn diagram official gene symbols
 list(`Piol`      = DE_Nanostring_ensembl$ensembl_gene_id,
      `Blum`      = Gitler_GSE161621_ensembl$ensembl_gene_id,
@@ -243,7 +245,7 @@ list(`Piol`      = DE_Nanostring_ensembl$ensembl_gene_id,
 ```
 
 ```{r}
-############################ DE genes unique to  ######################################
+############################ DE genes unique to  ###############################
 DE_Nanostring_ensembl %>%
     dplyr::filter(
       !ensembl_gene_id %in% Le_Pichon_GSE167597_ensembl$ensembl_gene_id, ## alkaslasi
@@ -281,8 +283,9 @@ names(l0) <- c("Novel Piol Chat+ vs Chat-",
                "Sathymurthy Chat+ vs Chat-")
 
 ## save Excel
-write_xlsx(x = l0, path = paste0("all_", filter_var, "_Chatpos_vs_Chatneg_",
-                                 "unfiltered_DEG_lists_final_correct.xlsx"))
+write_xlsx(x = l0,
+           path = paste0("../data/all_", filter_var, "_Chatpos_vs_Chatneg_",
+                         "unfiltered_DEG_lists_", Sys.Date(), ".xlsx"))
 ```
 
 ```{r}
@@ -320,15 +323,17 @@ DE_Nanostring_ensembl %>%
   as.data.frame() -> de_ns
 
 ## write merged table to Excel
-write_xlsx(x = de_ns, path = paste0("../data/all_", filter_var, "_Chatpos_vs_Chatneg_",
-                                    "deduplicated_LFC_final_correct", Sys.Date(), ".xlsx"))
+write_xlsx(x = de_ns,
+           path = paste0("../data/all_", filter_var, "_Chatpos_vs_Chatneg_",
+                         "deduplicated_LFC_", Sys.Date(), ".xlsx"))
 ```
 
 ```{r}
 ### Correlation scatterplots
 de_ns %>%
   ggplot(aes(x = Piol_lfc, y = Blum_lfc, label = genes)) +
-  geom_point(shape = 21, fill = "mediumpurple1", color = "slateblue4", size = 1, stroke = 1) +
+  geom_point(shape = 21, fill = "mediumpurple1", color = "slateblue4", size = 1,
+             stroke = 1) +
   xlab("Piol, et al. Log2 FC") + ylab("Blum, et al. 2021 Log2 FC") +
   geom_text_repel(force = 2) +
   stat_smooth(method = "lm", se = TRUE, formula = y ~ poly(x, 1, raw = TRUE),
@@ -339,7 +344,8 @@ de_ns %>%
 
 de_ns %>%
   ggplot(aes(x = Piol_lfc, y = Alkaslasi_lfc, label = genes)) +
-  geom_point(shape = 21, fill = "mediumpurple1", color = "slateblue4", size = 1, stroke = 1) +
+  geom_point(shape = 21, fill = "mediumpurple1", color = "slateblue4", size = 1,
+             stroke = 1) +
   xlab("Piol, et al. Log2 FC") + ylab("Alkaslasi, et al. 2021 Log2 FC") +
   geom_text_repel() +
   stat_smooth(method = "lm", se = TRUE, formula = y ~ poly(x, 1, raw = TRUE),
@@ -350,7 +356,8 @@ de_ns %>%
 
 de_ns %>%
   ggplot(aes(x = Piol_lfc, y = Yadav_lfc, label = genes)) +
-  geom_point(shape = 21, fill = "mediumpurple1", color = "slateblue4", size = 1, stroke = 1) +
+  geom_point(shape = 21, fill = "mediumpurple1", color = "slateblue4", size = 1,
+             stroke = 1) +
   xlab("Piol, et al. Log2 FC") + ylab("Yadav, et al. 2023") +
   geom_text_repel() +
   stat_smooth(method = "lm", se = TRUE, formula = y ~ poly(x, 1, raw = TRUE),
@@ -361,7 +368,8 @@ de_ns %>%
 
 de_ns %>%
   ggplot(aes(x = Piol_lfc, y = Gautier_lfc, label = genes)) +
-  geom_point(shape = 21, fill = "mediumpurple1", color = "slateblue4", size = 1, stroke = 1) +
+  geom_point(shape = 21, fill = "mediumpurple1", color = "slateblue4", size = 1,
+             stroke = 1) +
   xlab("Piol, et al. Log2 FC") + ylab("Gautier, et al. 2023") +
   geom_text_repel() +
   stat_smooth(method = "lm", se = TRUE, formula = y ~ poly(x, 1, raw = TRUE),
@@ -371,15 +379,21 @@ de_ns %>%
   ggtitle("Piol, et al. vs Gautier, et al. 2023 Log2 FC correlation") -> p4
 ```
 
+Create publication quality correlation figures.
+
 ```{r}
 ## print PNGs of correlations
-ggsave(filename = paste0("../plots/", filter_var, "correlation_Piol_v_Blum", Sys.Date(), ".png"),
+ggsave(filename = paste0("../plots/", filter_var, "correlation_Piol_v_Blum",
+                         Sys.Date(), ".png"),
        device = "png", plot = p1)
-ggsave(filename = paste0("../plots/", filter_var, "correlation_Piol_v_Alkaslasi", Sys.Date(), ".png"),
+ggsave(filename = paste0("../plots/", filter_var, "correlation_Piol_v_Alkaslasi",
+                         Sys.Date(), ".png"),
        device = "png", plot = p2)
-ggsave(filename = paste0("../plots/", filter_var, "correlation_Piol_v_Yadav", Sys.Date(), ".png"),
+ggsave(filename = paste0("../plots/", filter_var, "correlation_Piol_v_Yadav",
+                         Sys.Date(), ".png"),
        device = "png", plot = p3)
-ggsave(filename = paste0("../plots/", filter_var, "correlation_Piol_v_Gautier", Sys.Date(), ".png"),
+ggsave(filename = paste0("../plots/", filter_var, "correlation_Piol_v_Gautier",
+                         Sys.Date(), ".png"),
        device = "png", plot = p4)
 ```
 
