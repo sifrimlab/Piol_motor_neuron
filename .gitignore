@@ -47,3 +47,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Jupyter notebook
+notebooks/.ipynb_checkpoints/
+
+# Python specific
+*__pycache__/
