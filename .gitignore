@@ -51,3 +51,9 @@ rsconnect/
 # Resolve project files
 Resolve/ 
 obsolete/
+
+# Jupyter notebook
+notebooks/.ipynb_checkpoints/
+
+# Python specific
+*__pycache__/

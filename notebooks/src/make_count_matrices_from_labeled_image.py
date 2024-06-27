@@ -1,14 +1,8 @@
-import re
 import numpy as np
 import pandas as pd
-from tqdm import tqdm
-from glob import glob
 from skimage import io
 from pathlib import Path
-from skimage.draw import disk
 import matplotlib.pyplot as plt
-from pyxelperfect.display import plotSpatial
-from skimage.measure import regionprops_table
 from pyxelperfect.measure import measureLabeledImage
 
 def createGeneMatrix(labeled_image: np.array, decoded_df: pd.DataFrame, rowname: str = "row", colname: str ="col") -> pd.DataFrame:
