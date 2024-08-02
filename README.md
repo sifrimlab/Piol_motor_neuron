@@ -87,6 +87,8 @@ they can be run in the command line as follows, or ran in RStudio:
 - Rscripts, e.g.: `Rscript NS_make_raw_counts.R`
 - Rmarkdown workbooks, e.g.: `Rscript -e "rmarkdown::render('NS_spinal_cord_Chatpos_ctrl_v_Chatneg_ctrl.Rmd')"`
 
+Note: these scripts should only take around ~10 minutes to run in total
+
 # DEG_correlations
 
 This section contains R scripts to perform correlations between publicly available motor neuron datasets from GEO and data from the Piol, et al. manuscript. The raw data for these datasets can be downloaded from GEO from the following links:
@@ -100,6 +102,7 @@ Note:
 - author annotated versions of the datasets listed above that were used in the Piol, et al. study can also be downloaded from [Spinal Cord Atlas](http://spinalcordatlas.org/), or by contacting the respective authors of these studies.
 - you may need to change the input file path, based on the file architecture of your local machine
 - Seurat objects of these datasets can be made available upon request
+- the Seurat scripts will take a variable time to run. It's assumed that 72 cores are used (change based on your compute resources)
 
 To reproduce the data from this section, download the raw data outlined above and then run the scripts found in the `./DEG_correlations` folder, in the following order:
 1. `GSE161621_Blum_et_al_DE.R` performs Seurat DE between Chat+ vs Chat - nuclei in the data of Blum, et al. 2021
