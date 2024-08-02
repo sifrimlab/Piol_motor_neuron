@@ -41,7 +41,7 @@ found in `./config/yamls/`, outlined in the steps below:
     conda activate R_env
     ```
 
-This will set up the environment with all the dependencies required for the project.
+This will set up the environment with all the dependencies required for the project. The time to install the Conda dependencies can vary, depending on your machine. If it takes too long, we suggest using [Mamba](https://anaconda.org/conda-forge/mamba) to install these dependencies.
 
 ## Yamls
 
