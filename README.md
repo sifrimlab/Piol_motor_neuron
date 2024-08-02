@@ -74,13 +74,13 @@ The scripts for this workflow should be run in the following order:
 Note: you may need to change the input file path, based on the file architecture of your local machine:
 
 Then run the DESeq2 DEG analyses workbooks:
-3. `NS_sciatic_nerve_Chatpos_ctrl_v_Chatneg_ctrl_condition_model.Rmd`
-4. `NS_sciatic_nerve_Chatpos_ctrl_v_Chatneg_ctrl_segment_model.Rmd`
-5. `NS_sciatic_nerve_Chatpos_ctrl_v_Chatpos_FUS.Rmd`
-6. `NS_spinal_cord_Chatpos_ctrl_v_Chatneg_ctrl.Rmd`
+1. `NS_sciatic_nerve_Chatpos_ctrl_v_Chatneg_ctrl_condition_model.Rmd`
+2. `NS_sciatic_nerve_Chatpos_ctrl_v_Chatneg_ctrl_segment_model.Rmd`
+3. `NS_sciatic_nerve_Chatpos_ctrl_v_Chatpos_FUS.Rmd`
+4. `NS_spinal_cord_Chatpos_ctrl_v_Chatneg_ctrl.Rmd`
 
 To perform GSEA on the DEG lists derived from the DESEq2 analyses listed above, run:
-7. `NS_FGSEA_on_all_DE_res.R`
+5. `NS_FGSEA_on_all_DE_res.R`
 
 Assuming that you have already installed the R environment dependencies for these scripts,
 they can be run in the command line as follows, or ran in RStudio:
