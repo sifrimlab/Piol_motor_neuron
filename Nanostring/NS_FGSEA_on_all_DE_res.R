@@ -18,7 +18,8 @@ proj_name <- "Spinal_cord_Chatpos_vs_Chatneg_control"
 sp <- "Mus musculus"
 
 ## file path
-fp <- "~/Documents/tmp/dacruz/202406_piol/data/"
+# fp <- "~/Documents/tmp/dacruz/202406_piol/data/"
+fp <- "/path/to/Piol/github/repo/data/"
 
 ## NS_SC_Chatpos_v_neg_20240604_final DE results
 de_res <- "NanoString_spinal_cord_CTRL_DE_res_2024-06-04.xlsx"
@@ -112,7 +113,8 @@ proj_name <- "Sciatic_nerve_Chatpos_vs_Chatneg_control"
 sp <- "Mus musculus"
 
 ## file path
-fp <- "~/Documents/tmp/dacruz/202406_piol/data/"
+# fp <- "~/Documents/tmp/dacruz/202406_piol/data/"
+fp <- "/path/to/Piol/github/repo/data/"
 
 ## NS_SC_Chatpos_v_neg_20240604_final DE results
 de_res <- "NanoString_sciatic_nerve_CTRL_segment_DE_res_2024-06-04.xlsx"

@@ -54,13 +54,13 @@ display_venn <- function(x, ...){
 
 ```{r}
 ## read Yadav/Levine 2 DE results
-readRDS(file = "../GEO_DEG_lists/GSE190442_Yadav_et_al_motorneuron_DEGs.rds") %>%
+readRDS(file = "../data/GEO_DEG_lists/GSE190442_Yadav_et_al_motorneuron_DEGs.rds") %>%
   dplyr::rename(genes = names(.)[1]) %>%
   dplyr::mutate(Levine_GSE190442_gene_rank = row_number()) %>%
   as.data.frame() -> Levine_GSE190442_DE_RES
 
 ## read Gautier/Gitler 2 DE results
-readRDS(file = "../GEO_DEG_lists/GSE228778_Gautier_motorneuron_DEGs.rds") %>%
+readRDS(file = "../data/GEO_DEG_lists/GSE228778_Gautier_motorneuron_DEGs.rds") %>%
   dplyr::rename(genes = names(.)[1]) %>%
   dplyr::mutate(Levine_GSE190442_gene_rank = row_number()) %>%
   as.data.frame() -> Gautier_GSE228778_DE_RES
@@ -138,7 +138,7 @@ DE_Nanostring_sig_genes %>%
   as.data.frame() -> DE_Nanostring_sig_genes_NA
 
 ## read Gitler_GSE161621 results
-readRDS("../GEO_DEG_lists/GSE161621_Blum_et_al_motorneuron_DEGs.rds") %>%
+readRDS("../data/GEO_DEG_lists/GSE161621_Blum_et_al_motorneuron_DEGs.rds") %>%
   dplyr::rename(genes = names(.)[1]) %>%
   dplyr::mutate(Gitler_GSE161621_gene_rank = row_number()) %>%
   dplyr::left_join(mouse_gene_ids, by = "genes") %>%
@@ -154,7 +154,7 @@ Gitler_GSE161621_DE_RES %>%
   as.data.frame() -> Gitler_GSE161621_DE_RES_NA
 
 ## read Le_Pichon_GSE167597 results
-readRDS("../GEO_DEG_lists/GSE167597_Alkaslasi_et_al_motorneuron_DEGs.rds") %>%
+readRDS("../data/GEO_DEG_lists/GSE167597_Alkaslasi_et_al_motorneuron_DEGs.rds") %>%
   dplyr::rename(genes = names(.)[1]) %>%
   dplyr::mutate(Le_Pichon_GSE167597_gene_rank = row_number()) %>%
   dplyr::left_join(mouse_gene_ids, by = "genes") %>%
@@ -170,7 +170,7 @@ Le_Pichon_GSE167597_DE_RES %>%
   as.data.frame() -> Le_Pichon_GSE167597_DE_RES_NA
 
 ## read Levine_GSE103892 results
-readRDS("../GEO_DEG_lists/GSE103892_Sathyamurthy_et_al_motorneuron_DEGs.rds") %>%
+readRDS("../data/GEO_DEG_lists/GSE103892_Sathyamurthy_et_al_motorneuron_DEGs.rds") %>%
   dplyr::rename(genes = names(.)[1]) %>%
   dplyr::mutate(Levine_GSE103892_gene_rank = row_number()) %>%
   dplyr::filter(group == "Chat_pos") %>%
@@ -264,11 +264,11 @@ list(DE_Nanostring_sig_genes_unique %>% dplyr::select(-contains("rank")), ## pio
        dplyr::select(-contains("rank")), ## piol
      Gautier_GSE228778_DE_RES %>% dplyr::select(-contains("rank")), ## gautier
      Levine_GSE190442_DE_RES %>% dplyr::select(-contains("rank")), ## yadav
-     readRDS("../GEO_DEG_lists/GSE161621_Blum_et_al_motorneuron_DEGs.rds") %>%
+     readRDS("../data/GEO_DEG_lists/GSE161621_Blum_et_al_motorneuron_DEGs.rds") %>%
        dplyr::rename(genes = names(.)[1]),
-     readRDS("../GEO_DEG_lists/GSE167597_Alkaslasi_et_al_motorneuron_DEGs.rds") %>%
+     readRDS("../data/GEO_DEG_lists/GSE167597_Alkaslasi_et_al_motorneuron_DEGs.rds") %>%
        dplyr::rename(genes = names(.)[1]),
-     readRDS(file = paste0("../GEO_DEG_lists/GSE103892_Sathyamurthy_et_al_motorneuron_DEGs.rds")) %>%
+     readRDS(file = paste0("../data/GEO_DEG_lists/GSE103892_Sathyamurthy_et_al_motorneuron_DEGs.rds")) %>%
        dplyr::rename(genes = names(.)[1]) %>%
        dplyr::filter(group == "Chat_pos")
      ) -> l0

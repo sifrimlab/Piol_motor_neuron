@@ -19,8 +19,9 @@ library("Matrix")
 future::plan("multicore", workers = 72) # uses 48 CPU
 options(future.globals.maxSize = 5000 * 1024^2) ## 5GB per worker
 
-## file path
-fp <- "/staging/leuven/stg_00130/Projects/Diana_Piol_Project/author_annotated_MN/"
+## file path to RDS file
+# fp <- "/staging/leuven/stg_00130/Projects/Diana_Piol_Project/author_annotated_MN/"
+fp <- "/your/path/to/rds/file/"
 
 ## read the RDS object for the full data
 seu <- readRDS(file = paste0(fp, "AlkaslasiPiccusetal_allnuclei.RDS")) 

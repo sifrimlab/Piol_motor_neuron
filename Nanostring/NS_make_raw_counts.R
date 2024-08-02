@@ -11,10 +11,12 @@ library("readxl")
 library("readr")
 
 ## input file path
-fp <- "~/Documents/tmp/dacruz/202311_piol/data/"
+# fp <- "~/Documents/tmp/dacruz/202311_piol/data/"
+fp <- "/path/to/Piol/github/repo/data/"
 
 ## output file path
-out_path <- "~/Documents/tmp/dacruz/202406_piol/data/"
+# out_path <- "~/Documents/tmp/dacruz/202406_piol/data/"
+out_path <- "/path/to/Piol/github/repo/data/"
 
 ## read long format count file
 readxl::read_excel(path = paste0(fp, "count_matrix_Long_Whole_Dataset.xlsx")) %>% 

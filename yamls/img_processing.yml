@@ -1,3 +1,5 @@
+
+name: img_processing
 channels:
   - defaults
 dependencies:

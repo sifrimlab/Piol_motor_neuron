@@ -28,7 +28,8 @@ options(future.globals.maxSize = 5000 * 1024^2) ## 5GB per worker
 
 ###################### reconstruct original whole Blum data ####################
 # Path to your H5AD file
-fp <- "/staging/leuven/stg_00130/Projects/Diana_Piol_Project/author_annotated_MN/"
+# fp <- "/staging/leuven/stg_00130/Projects/Diana_Piol_Project/author_annotated_MN/"
+fp <- "/your/path/to/H5AD/file/"
 h5ad_file <- paste0(fp, "h5d_dataset/allexpsctl.h5ad")
 
 # Read the H5AD file

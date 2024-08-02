@@ -11,6 +11,7 @@ To run the notebook, follow these steps:
    ```bash
    conda env create -f OtF.yml
    conda activate OtF
+   ```
 
 2. **Download the processed 10X Visium `.h5ad` file from GEO:**
 

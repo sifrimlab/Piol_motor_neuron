@@ -23,8 +23,9 @@ NPC <- 50 ## number of PCs of first PCA
 k_para <- 50 ## number of k paramaters in FindNeighbors default is 30
 sig_dims <- 50 ## number of PCs of final PCA
 
-## file path to
-fp <- "/staging/leuven/stg_00130/Projects/Diana_Piol_Project/RDS/"
+## file path to raw data
+# fp <- "/staging/leuven/stg_00130/Projects/Diana_Piol_Project/RDS/"
+fp <- "/your/path/to/file/"
 
 ## read metadata
 readr::read_csv(file = paste0(fp, "GSE190442_aggregated_metadata_postqc.csv")) %>%

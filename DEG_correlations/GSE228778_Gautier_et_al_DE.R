@@ -14,7 +14,8 @@ future::plan("multicore", workers = 72) # uses 48 CPU
 options(future.globals.maxSize = 5000 * 1024^2) ## 5GB per worker
 
 ## file path
-fp <- "/staging/leuven/stg_00130/Projects/Diana_Piol_Project/GSE228778/"
+# fp <- "/staging/leuven/stg_00130/Projects/Diana_Piol_Project/GSE228778/"
+fp <- "/your/path/to/rds/file/"
 
 ## NOTE: this dataset is already a Seurat object with normalized and scaled
 ## counts, so we can load the complete RDS and proceed directly to perform DEG
